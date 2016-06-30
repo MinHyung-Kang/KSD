@@ -117,11 +117,14 @@ rgmm <- function(model = NULL,n=100){
                   data <- rnorm(n=n,mean=mu[components],sd=stdev[components])
             }else{
             # Multidimensional Case
-                  require('mvtnorm')
+                  if (!requireNamespace("mvtnorm", quietly = TRUE)) {
+                        stop("mvtnorm needed for this demo to work. Please install it.",
+                             call. = FALSE)
+                  }
                   data = NULL
                   for(i in 1:k){
                         count <- sum(components == i)
-                        singleClusterData <- rmvnorm(count, mean=mu[,i], sigma = sigma[,,i])
+                        singleClusterData <- mvtnorm::rmvnorm(count, mean=mu[,i], sigma = sigma[,,i])
                         data = rbind(data,singleClusterData)
                   }
             }
@@ -172,12 +175,13 @@ perturbgmm <- function(model = NULL){
 #' @export
 #'
 #' @examples
-#' #compute posterior probability for a default 1-d gaussian mixture model and dataset generated from it
+#' # compute posterior probability for a default 1-d gaussian mixture model
+#' # and dataset generated from it
 #' model <- gmm()
 #' X <- rgmm(model)
 #' p <- posteriorgmm(model=model, X=X)
 
-posteriorgmm <- function(model=null, X=null){
+posteriorgmm <- function(model=NULL, X=NULL){
       if(is.null(model) || is.null(X)){
             stop('Supply Model and Data')
       }else{
@@ -202,8 +206,12 @@ posteriorgmm <- function(model=null, X=null){
                         P = cbind(P, singleModelP)
                   }
             }else{
+                  if (!requireNamespace("mvtnorm", quietly = TRUE)) {
+                        stop("mvtnorm needed for this demo to work. Please install it.",
+                             call. = FALSE)
+                  }
                   for(i in 1:k){
-                        singleModelP <- dmvnorm(X,mean=mu[,i],sigma=sigma[,,i])
+                        singleModelP <- mvtnorm::dmvnorm(X,mean=mu[,i],sigma=sigma[,,i])
                         P = cbind(P, singleModelP)
                   }
             }
@@ -217,9 +225,23 @@ posteriorgmm <- function(model=null, X=null){
       return(P)
 }
 
-# CAN BE MERGED LATERRRRR
+#' Calculates the likelihood for a given dataset for a GMM
+#'
+#' @param model : The Gaussian Mixture Model
+#' @param X (n by d): The dataset of interest,
+#' where n is the number of samples and d is the dimension
+#'
+#' @return P (n by k) : The likelihood of each dataset belonging to each of the k component
+#'
 #' @export
-likelihoodgmm <- function(model=null, X=null){
+#'
+#' @examples
+#' # compute likelihood for a default 1-d gaussian mixture model
+#' # and dataset generated from it
+#' model <- gmm()
+#' X <- rgmm(model)
+#' p <- likelihoodgmm(model=model, X=X)
+likelihoodgmm <- function(model=NULL, X=NULL){
       if(is.null(model) || is.null(X)){
             stop('Supply Model and Data')
       }else{
@@ -243,8 +265,13 @@ likelihoodgmm <- function(model=null, X=null){
                         P = cbind(P, singleModelP)
                   }
             }else{
+                  if (!requireNamespace("mvtnorm", quietly = TRUE)) {
+                        stop("mvtnorm needed for this demo to work. Please install it.",
+                             call. = FALSE)
+                  }
+
                   for(i in 1:k){
-                        singleModelP <- dmvnorm(X,mean=mu[,i],sigma=sigma[,,i])
+                        singleModelP <- mvtnorm::dmvnorm(X,mean=mu[,i],sigma=sigma[,,i])
                         P = cbind(P, singleModelP)
                   }
             }

@@ -16,15 +16,32 @@
 #'
 #' @export
 demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
-      require(datasets)
-      require(mclust)
-      require(ggplot2)
-      require(gridExtra)
+
+      if (!requireNamespace("datasets", quietly = TRUE)) {
+            stop("datasets needed for this demo to work. Please install it.",
+                 call. = FALSE)
+      }
+      if (!requireNamespace("ggplot2", quietly = TRUE)) {
+            stop("ggplot2 needed for this demo to work. Please install it.",
+                 call. = FALSE)
+      }
+      if (!requireNamespace("gridExtra", quietly = TRUE)) {
+            stop("gridExtra needed for this demo to work. Please install it.",
+                 call. = FALSE)
+      }
+      if (!requireNamespace("mclust", quietly = TRUE)) {
+            stop("mclust needed for this demo to work. Please install it.",
+                 call. = FALSE)
+      }
+      if (!requireNamespace("pryr", quietly = TRUE)) {
+            stop("pryr needed for this demo to work. Please install it.",
+                 call. = FALSE)
+      }
 
       set.seed(0)
 
       pVals <- rep(0,kfold)
-      indexing <- 1:nrow(iris)
+      indexing <- 1:nrow(datasets::iris)
       kfoldGroups <- split(indexing, cut(indexing,kfold))
       irisSet <- iris[sample(nrow(iris)),cols]
       factorNames <- colnames(irisSet)
@@ -57,7 +74,7 @@ demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
                   testSet <- irisSet[testIndex,]
 
                   # Get the estimated parameters
-                  clustModel <- Mclust(trainSet,G=k)
+                  clustModel <- mclust::Mclust(trainSet,G=k)
                   clustMu <- clustModel$parameters$mean
                   pro <- clustModel$parameters$pro
                   pro <- sapply(pro,custround)
@@ -82,14 +99,14 @@ demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
                         points <- data.frame(pointsx, pointsy, type)
 
                         par(mar=c(4,4,4,1))
-                        v <- ggplot(data=grids, aes(gridx, gridy)) +
-                              ggtitle(paste('Fold ',i, ' ( pvalue = ',pVals[i],')')) +
-                              labs(x=factorNames[1],y=factorNames[2])
-                        v <- v + stat_contour(aes(z=z))
-                        v <- v + geom_point(data=points, aes(x=pointsx,y=pointsy,shape=factor(type),color=factor(type)),size=2)+
-                              annotate("text", x=clustMu[1,], y=clustMu[2,], label= pro)
+                        v <- ggplot2::ggplot(data=grids, ggplot2::aes(gridx, gridy)) +
+                              ggplot2::ggtitle(paste('Fold ',i, ' ( pvalue = ',pVals[i],')')) +
+                              ggplot2::labs(x=factorNames[1],y=factorNames[2])
+                        v <- v + ggplot2::stat_contour(ggplot2::aes(z=z))
+                        v <- v + ggplot2::geom_point(data=points, ggplot2::aes(x=pointsx,y=pointsy,shape=factor(type),color=factor(type)),size=2)+
+                              ggplot2::annotate("text", x=clustMu[1,], y=clustMu[2,], label= pro)
                         legend <- get_legend(v)
-                        v <- v + theme(legend.position="none")
+                        v <- v + ggplot2::theme(legend.position="none")
                         plot_list[[i]] = v
                   }
             }
@@ -109,10 +126,10 @@ demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
       # Only if we have more than one option
       if(length(nClust) > 1){
             pFrame <- data.frame(nClust=nClust,avgpVals = avgpVals)
-            pValGraph <- ggplot(pFrame, aes(nClust, avgpVals)) +
-                  ggtitle('P-value vs Number of clusters') +
-                  labs(x='Number of clusters',y='p-value')
-            pValGraph <- pValGraph + geom_line() + scale_x_continuous(breaks=seq(min(nClust),max(nClust),1))
+            pValGraph <- ggplot2::ggplot(pFrame, ggplot2::aes(nClust, avgpVals)) +
+                  ggplot2::ggtitle('P-value vs Number of clusters') +
+                  ggplot2::labs(x='Number of clusters',y='p-value')
+            pValGraph <- pValGraph + ggplot2::geom_line() + ggplot2::scale_x_continuous(breaks=seq(min(nClust),max(nClust),1))
 
             if(d==2)
                   max_plot_list[[kfold+2]] <-  pValGraph
@@ -123,7 +140,7 @@ demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
       }
 
       if(d==2 || length(nClust) > 1)
-            do.call(grid.arrange,max_plot_list)
+            do.call(gridExtra::grid.arrange,max_plot_list)
 
 
 }

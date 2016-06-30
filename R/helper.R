@@ -95,7 +95,7 @@ gamma_score <- function(x, shape, rate=1,scale=1/rate){
 # Function that can be used to retain legend of a plot
 # http://www.sthda.com/
 get_legend<-function(myggplot){
-      tmp <- ggplot_gtable(ggplot_build(myggplot))
+      tmp <- ggplot2::ggplot_gtable(ggplot2::ggplot_build(myggplot))
       leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
       legend <- tmp$grobs[[leg]]
       return(legend)

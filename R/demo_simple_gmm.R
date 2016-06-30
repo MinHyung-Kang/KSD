@@ -80,7 +80,7 @@ demo_simple_gamma <- function(trueshape=10, truescale=3, noisemu=5, noisesd=2, n
       originalresult <- KSD(data,score_q=score_q,'rbf',-1.0)
       noisyresult <- KSD(noisydata,score_q=score_q,'rbf',-1.0)
 
-      print(sprintf('p for fitting true distribution with original data: %f',result$p))
+      print(sprintf('p for fitting true distribution with original data: %f',originalresult$p))
       print(sprintf('p for fitting true distribution with data with noise: %f',noisyresult$p))
 }
 
@@ -91,7 +91,6 @@ demo_simple_gamma <- function(trueshape=10, truescale=3, noisemu=5, noisesd=2, n
 #' @export
 
 demo_gmm <- function(){
-
       print('1. 1-dimensional Gaussian, 100 samples')
       model <- gmm()
       X <- rgmm(model, n=100)
@@ -146,7 +145,6 @@ demo_gmm <- function(){
 #' @export
 
 demo_gmm_multi <- function(){
-
       print('1. 3-dimensional Gaussian, 100 samples')
       model <- gmm(nComp=5,d=3)
       X <- rgmm(model, n=100)

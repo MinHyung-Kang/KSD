@@ -4,7 +4,7 @@
 \alias{posteriorgmm}
 \title{Calculates the posterior probability for a given dataset for a GMM}
 \usage{
-posteriorgmm(model = null, X = null)
+posteriorgmm(model = NULL, X = NULL)
 }
 \arguments{
 \item{model}{: The Gaussian Mixture Model}
@@ -19,7 +19,8 @@ P (n by k) : The posterior probabilty of each dataset belonging to each of the k
 Calculates the posterior probability for a given dataset for a GMM
 }
 \examples{
-#compute posterior probability for a default 1-d gaussian mixture model and dataset generated from it
+# compute posterior probability for a default 1-d gaussian mixture model
+# and dataset generated from it
 model <- gmm()
 X <- rgmm(model)
 p <- posteriorgmm(model=model, X=X)
