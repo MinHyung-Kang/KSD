@@ -3,3 +3,8 @@
 ^cran-comments\.md$
 ^\.LICENSE$
 ^\.travis\.yml$
+^revdep$
+^README\.Rmd$
+^README-.*\.png$
+^NEWS\.md$
+^*.png$
