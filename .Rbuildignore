@@ -7,4 +7,4 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^NEWS\.md$
-^*.png$
+^*\.png$
