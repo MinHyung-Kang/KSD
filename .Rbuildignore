@@ -6,4 +6,3 @@
 ^revdep$
 ^README\.Rmd$
 ^README-.*\.png$
-^NEWS\.md$
