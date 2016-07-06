@@ -7,6 +7,7 @@
 #' If a vector is specified for nClust, the code tries each element as the number of clusters
 #' and reports the optimal parameter by choosing one with highest p-value.
 #'
+#' @import stats graphics datasets
 #' @param cols : Columns of iris data set to use. If 2 dimensions, plots the contour for each k-fold.
 #' @param nClust : Number of clusters want to estimate with
 #'                If vector, use each element as number of clusters and reports the optimal number.
@@ -43,7 +44,7 @@ demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
       pVals <- rep(0,kfold)
       indexing <- 1:nrow(datasets::iris)
       kfoldGroups <- split(indexing, cut(indexing,kfold))
-      irisSet <- iris[sample(nrow(iris)),cols]
+      irisSet <- datasets::iris[sample(nrow(iris)),cols]
       factorNames <- colnames(irisSet)
       d <- length(cols)
 

@@ -8,6 +8,7 @@
 #'
 #' @return model : A Gaussian Mixture Model generated from the given parameters
 #'
+#'
 #' @export
 #'
 #' @examples
@@ -84,6 +85,7 @@ gmm <- function(nComp=NULL, mu=NULL, sigma=NULL, weights=NULL, d=NULL){
 #'
 #' @return data (n by d): Random dataset generated from given the Gaussian Mixture Model
 #'
+#'
 #' @export
 #'
 #' @examples
@@ -142,6 +144,7 @@ rgmm <- function(model = NULL,n=100){
 #'
 #' @return perturbedModel : Perturbed model with added noise to the supplied GMM
 #'
+#'
 #' @export
 #'
 #' @examples
@@ -171,6 +174,7 @@ perturbgmm <- function(model = NULL){
 #' where n is the number of samples and d is the dimension
 #'
 #' @return P (n by k) : The posterior probabilty of each dataset belonging to each of the k component
+#'
 #'
 #' @export
 #'
@@ -233,6 +237,7 @@ posteriorgmm <- function(model=NULL, X=NULL){
 #'
 #' @return P (n by k) : The likelihood of each dataset belonging to each of the k component
 #'
+#'
 #' @export
 #'
 #' @examples
@@ -292,6 +297,7 @@ likelihoodgmm <- function(model=NULL, X=NULL){
 #' where n is the number of samples and d is the dimension
 #'
 #' @return y : The score computed by the given function
+#'
 #'
 #' @export
 #'

@@ -12,6 +12,7 @@
 #'
 #'
 #'
+#'
 #' @export
 demo_simple_gaussian <- function(truemu=5, truesd=1, noisemu=0, noisesd=2, n=100){
       data <- rnorm(n,mean=truemu,sd=truesd)
@@ -31,7 +32,6 @@ demo_simple_gaussian <- function(truemu=5, truesd=1, noisemu=0, noisesd=2, n=100
 #'
 #' @description We generate a standard normal distribution,
 #' and add varying gaussian noise to this dataset and see the change in pvalues.
-#'
 #'
 #'
 #' @export
@@ -69,7 +69,6 @@ demo_normal_performance <- function(){
 #' @param n number of samples to generate
 #'
 #'
-#'
 #' @export
 demo_simple_gamma <- function(trueshape=10, truescale=3, noisemu=5, noisesd=2, n=100){
       data <- rgamma(n,shape = trueshape,scale = truescale)
@@ -87,7 +86,6 @@ demo_simple_gamma <- function(trueshape=10, truescale=3, noisemu=5, noisesd=2, n
 
 
 #' Tests 1-dimensional Gaussian Mixture Models.
-#'
 #' @export
 
 demo_gmm <- function(){
@@ -141,7 +139,6 @@ demo_gmm <- function(){
 }
 
 #' Tests multidimensional Gaussian Mixture Models.
-#'
 #' @export
 
 demo_gmm_multi <- function(){

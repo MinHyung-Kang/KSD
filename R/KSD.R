@@ -24,6 +24,7 @@
 #' bandwidth, M, nboot, ksd_V
 #' }
 #'
+#'
 #' @export
 #'
 #' @examples
