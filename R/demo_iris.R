@@ -44,7 +44,7 @@ demo_iris <- function(cols = c(1,2), nClust=3, kfold=5){
       pVals <- rep(0,kfold)
       indexing <- 1:nrow(datasets::iris)
       kfoldGroups <- split(indexing, cut(indexing,kfold))
-      irisSet <- datasets::iris[sample(nrow(iris)),cols]
+      irisSet <- datasets::iris[sample(nrow(datasets::iris)),cols]
       factorNames <- colnames(irisSet)
       d <- length(cols)
 
