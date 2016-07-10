@@ -13,7 +13,7 @@ This package is an adaptation of Kernelized Stein Discrepancy, a discrepancy sta
 The main function of this package is KSD, which estimates Kernelized Stein Discrepancy. Parameters include :
 
 -   **x** Sample of size Num\_Instance x Num\_Dimension
--   **score\_q** Score funtion : takes x as input and output a column vector of size Num\_Instance X Dimension. User may use pryr package to pass in a function that only takes in dataset as parameter, or user may also pass in computed score for a given dataset.
+-   **score\_function** Score funtion (∇<sub>*x*</sub>log*p*(*x*)) : takes x as input and output a column vector of size Num\_Instance X Dimension. User may use pryr package to pass in a function that only takes in dataset as parameter, or user may also pass in computed score for a given dataset.
 -   **kernel** Type of kernel (default = 'rbf')
 -   **width** Bandwidth of the kernel
 -   **nboot** Bootstrap sample size
@@ -38,8 +38,8 @@ library(pryr)
 
 model <- gmm()
 X <- rgmm(model, n=100)
-score_q = scorefunctiongmm(model=model, X=X)
-result <- KSD(X,score_q=score_q)
+score_function = scorefunctiongmm(model=model, X=X)
+result <- KSD(X,score_function=score_function)
 result$p
 #> [1] 0.899
 ```
@@ -53,8 +53,8 @@ library(KSD)
 library(pryr)
 model <- gmm()
 X <- rgmm(model, n=100)
-score_q = pryr::partial(scorefunctiongmm, model=model)
-result <- KSD(X,score_q=score_q)
+score_function = pryr::partial(scorefunctiongmm, model=model)
+result <- KSD(X,score_function=score_function)
 result$p
 #> [1] 0.899
 ```

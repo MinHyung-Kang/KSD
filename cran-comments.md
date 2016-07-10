@@ -31,3 +31,15 @@ Consider adding
 to your NAMESPACE file.
 
 ### Second Submission (160705)
+
+We get
+
+ * checking R code for possible problems ... NOTE
+ demo_iris: no visible binding for global variable ‘iris’
+Undefined global functions or variables:
+  iris
+Consider adding
+   importFrom("datasets", "iris")
+to your NAMESPACE file.
+
+### Third Submission (160707)
