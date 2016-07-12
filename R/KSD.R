@@ -1,7 +1,7 @@
 #' Estimate Kernelized Stein Discrepancy (KSD)
 #'
 #' Estimate kernelized Stein discrepancy (KSD) using U-statistics,
-#' and use bootstrap to test H0: KSD = 0 vs H1: KSD != 0
+#' and use bootstrap to test H0: \eqn{x_i} is drawn from \eqn{p(X)} (via KSD=0).
 #'
 #' @param x   Sample of size Num_Instance x Num_Dimension
 #' @param score_function   (\eqn{\nabla_x \log p(x)}) Score funtion : takes x as input and
