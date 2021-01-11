@@ -11,14 +11,14 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
 ## KSD
 
 ### Overview
-This package provides a goodness-of-fit test of whether a given i.i.d. sample $\{x_i\}$ is drawn from a given distribution. It works for any distribution once its score function (the derivative of log-density) $\nabla_x \log p(x)$ can be provided. This method is based on ``A Kernelized Stein Discrepancy for Goodness-of-fit Tests and Model Evaluation'' by Liu, Lee, and Jordan, available at <http://arxiv.org/abs/1602.03253>. 
+This package provides a goodness-of-fit test of whether a given i.i.d. sample $\{x_i\}$ is drawn from a given distribution. It works for any distribution once its score function (the derivative of log-density) $\nabla_x \log p(x)$ can be provided. This method is based on ``A Kernelized Stein Discrepancy for Goodness-of-fit Tests and Model Evaluation'' by Liu, Lee, and Jordan, available at <arXiv:1602.03253>. 
 
 ### Main Components
 
@@ -36,7 +36,7 @@ Parameters include :
 Other methods are also in this package, including various demos and examples. 
 
 KSD requires user to provide a score function to be used for computation.
-For example usage and exploration, a *gmm* class is provided in the pacakge, which allow test KSD using gaussian mixture model.
+For example usage and exploration, a *gmm* class is provided in the package, which allow test KSD using gaussian mixture model.
 
 Consider the following examples : 
 
@@ -98,7 +98,6 @@ library(pryr)
 
 demo_iris()
 ```
-
 
 ### Installation instructions
 Currently, the code is available at <https://github.com/MinHyung-Kang/KSD/>

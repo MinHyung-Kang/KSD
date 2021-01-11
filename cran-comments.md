@@ -1,17 +1,32 @@
-## Test environments
-* local Windows 7, R 3.2.1
-* ubuntu 12.04 (on travis-ci), R 3.3.1
 
-## R CMD check results
+
+## Version 1.0.1
+
+### Test environments
+* local MacOS 10.15.7 (Catalina), R 4.0.3
+
+### R CMD check results
 There were no ERRORs, WARNINGs or NOTEs. 
 
-## Downstream dependencies
+### Downstream dependencies
 There is no Downstream dependency (first release)
 
+### Submission (210111)
+All changes were simple documentation changes
 
 
 
 ## Version 0.1.0 (First Release)
+
+### Test environments
+* local Windows 7, R 3.2.1
+* ubuntu 12.04 (on travis-ci), R 3.3.1
+
+### R CMD check results
+There were no ERRORs, WARNINGs or NOTEs. 
+
+### Downstream dependencies
+There is no Downstream dependency (first release)
 
 ### First Submission (160630)
 Error :
